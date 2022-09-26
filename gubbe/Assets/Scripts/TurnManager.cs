@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TurnManager : MonoBehaviour
 {
@@ -39,6 +40,17 @@ public class TurnManager : MonoBehaviour
                 ChangeTurn();
             }
         }
+
+        if (GameObject.FindWithTag ("Player1") == null)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        if (GameObject.FindWithTag("Player2") == null)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
     }
 
     public bool IsItPlayerTurn(int index)
