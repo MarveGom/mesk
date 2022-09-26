@@ -9,10 +9,12 @@ public class Projectile : MonoBehaviour
     [SerializeField] private GameObject damageIndicatorPrefab;
     private bool isActive;
 
-    public void Initialize()
+    public void Initialize(Vector3 direction)
     {
         isActive = true;
-        projectileBody.AddForce(transform.forward * 700f + transform.up * 300f);
+        projectileBody.AddForce(direction);
+        
+        //projectileBody.AddForce(transform.forward * 700f + transform.up * 300f);
     }
 
     void Update()
@@ -25,10 +27,15 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.GetComponent<PlayerHealth>() != null)
+        {
+            collision.gameObject.GetComponent<PlayerHealth>().playerHealth -= 1;
+        }
+
         GameObject collisionObject = collision.gameObject;
         DestructionFree destruction = collisionObject.GetComponent<DestructionFree>();
-        if (destruction == null)
-        Destroy(collisionObject);
+        //if (destruction == null)
+        //Destroy(collisionObject);
 
         {
             GameObject damageIndicator = Instantiate(damageIndicatorPrefab);

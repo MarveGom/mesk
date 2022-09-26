@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    [SerializeField] private int playerIndex;
     [SerializeField] private float jumpHeight = 200f;
-    private float runningSpeed = 15f;
+    private float runningSpeed = 8f;
     private Rigidbody rb;
     private Vector2 movementInput;
     private bool sprinting;
-    [SerializeField] private int playerIndex;
+    private AudioSource source;
+
 
 
     [Range(0.5f, 10f)] public float speed;
@@ -18,7 +20,11 @@ public class CharacterController : MonoBehaviour
 
     void Start()
     {
+        source= GetComponent<AudioSource>();
+
         rb = gameObject.GetComponent<Rigidbody>();
+
+        Cursor.visible = false;
     }
     
     void Update()
@@ -28,6 +34,7 @@ public class CharacterController : MonoBehaviour
             if (sprinting == false)
             {
                 movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
             }
 
             if (Input.GetKeyUp(KeyCode.LeftShift))
@@ -39,6 +46,7 @@ public class CharacterController : MonoBehaviour
                 else if (sprinting == false)
                 {
                     sprinting = true;
+
                 }
             }
 

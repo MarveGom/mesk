@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private PlayerTurn playerOne;
     [SerializeField] private PlayerTurn playerTwo;
     [SerializeField] private float timeBetweenTurns;
+    [SerializeField] public CinemachineVirtualCamera cameraCM1;
+    [SerializeField] public CinemachineVirtualCamera cameraCM2;
 
     private int currentPlayerIndex;
     private bool waitingForNextTurn;
@@ -63,10 +66,14 @@ public class TurnManager : MonoBehaviour
         if (currentPlayerIndex == 1)
         {
             currentPlayerIndex = 2;
+            cameraCM1.Priority -= 5;
+            cameraCM2.Priority += 5;
         }
         else if (currentPlayerIndex == 2)
         {
             currentPlayerIndex = 1;
+            cameraCM1.Priority += 5;
+            cameraCM2.Priority -= 5;
         }
     }
 }
