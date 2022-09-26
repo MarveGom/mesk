@@ -6,7 +6,7 @@ public class CharacterController : MonoBehaviour
 {
     [SerializeField] private int playerIndex;
     [SerializeField] private float jumpHeight = 200f;
-    private float runningSpeed = 8f;
+    private float runningSpeed = 6.5f;
     private Rigidbody rb;
     private Vector2 movementInput;
     private bool sprinting;

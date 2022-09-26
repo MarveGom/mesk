@@ -10,12 +10,4 @@ public class Platform : MonoBehaviour
     {
         transform.position = new Vector3(Mathf.PingPong(Time.time * _speed, 10) -5, transform.position.y, transform.position.z);
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            other.transform.parent = null;
-        }
-    }
-
 }
