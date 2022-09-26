@@ -16,6 +16,6 @@ public class SignScript : MonoBehaviour
 
     private void NewMethod()
     {
-        Destroy(gameObject, 7);
+        Destroy(gameObject, 6);
     }
 }
